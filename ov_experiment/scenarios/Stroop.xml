@@ -134,7 +134,7 @@
 			<Attributes>
 				<Attribute>
 					<Identifier>(0x1fa7a38f, 0x54edbe0b)</Identifier>
-					<Value>560</Value>
+					<Value>432</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
@@ -577,7 +577,7 @@
 			<Attributes>
 				<Attribute>
 					<Identifier>(0x1fa7a38f, 0x54edbe0b)</Identifier>
-					<Value>560</Value>
+					<Value>432</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
@@ -611,6 +611,14 @@
 				<Setting>
 					<TypeIdentifier>(0xb0d0db45, 0x49cbc34a)</TypeIdentifier>
 					<Name>Lua Script</Name>
+					<DefaultValue></DefaultValue>
+					<Value>${Player_ScenarioDirectory}/scripts/stroop_timing.lua</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<Identifier>(0x6d7d2d5b, 0x66fe3e34)</Identifier>
+					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
+					<Name>Stimulation Sequence File</Name>
 					<DefaultValue></DefaultValue>
 					<Value></Value>
 					<Modifiability>false</Modifiability>
@@ -787,7 +795,7 @@
 		<Entry>
 			<Identifier>(0x0000384a, 0x00001c7f)</Identifier>
 			<Type>(0x3bcce5d2, 0x43f2d968)</Type>
-			<Data>[{"boxIdentifier":"(0x000022c9, 0x00000427)","childCount":0,"identifier":"(0x00000b74, 0x0000640e)","parentIdentifier":"(0xffffffff, 0xffffffff)","type":3},{"boxIdentifier":"(0x00001779, 0x00003940)","childCount":0,"identifier":"(0x000028fb, 0x0000320b)","parentIdentifier":"(0xffffffff, 0xffffffff)","type":3},{"boxIdentifier":"(0xffffffff, 0xffffffff)","childCount":1,"height":1,"identifier":"(0x00003988, 0x000074c7)","name":"Default window","parentIdentifier":"(0xffffffff, 0xffffffff)","type":1,"width":1},{"boxIdentifier":"(0x00001228, 0x000060f8)","childCount":0,"identifier":"(0x00003c00, 0x000065f5)","parentIdentifier":"(0xffffffff, 0xffffffff)","type":3},{"boxIdentifier":"(0xffffffff, 0xffffffff)","childCount":1,"identifier":"(0x000049bc, 0x00006c78)","index":0,"name":"Default tab","parentIdentifier":"(0x00003988, 0x000074c7)","type":2},{"boxIdentifier":"(0xffffffff, 0xffffffff)","childCount":0,"identifier":"(0x00003e65, 0x00007d6f)","index":0,"name":"Empty","parentIdentifier":"(0x000049bc, 0x00006c78)","type":0}]</Data>
+			<Data>[{"boxIdentifier":"(0x000022c9, 0x00000427)","childCount":0,"identifier":"(0x00000b74, 0x0000640e)","parentIdentifier":"(0xffffffff, 0xffffffff)","type":3},{"boxIdentifier":"(0x00001779, 0x00003940)","childCount":0,"identifier":"(0x000028fb, 0x0000320b)","parentIdentifier":"(0xffffffff, 0xffffffff)","type":3},{"boxIdentifier":"(0xffffffff, 0xffffffff)","childCount":1,"height":320,"identifier":"(0x00003988, 0x000074c7)","name":"Default window","parentIdentifier":"(0xffffffff, 0xffffffff)","type":1,"width":475},{"boxIdentifier":"(0x00001228, 0x000060f8)","childCount":0,"identifier":"(0x00003c00, 0x000065f5)","parentIdentifier":"(0xffffffff, 0xffffffff)","type":3},{"boxIdentifier":"(0xffffffff, 0xffffffff)","childCount":1,"identifier":"(0x000049bc, 0x00006c78)","index":0,"name":"Default tab","parentIdentifier":"(0x00003988, 0x000074c7)","type":2},{"boxIdentifier":"(0xffffffff, 0xffffffff)","childCount":0,"identifier":"(0x000054be, 0x00000613)","index":0,"name":"Empty","parentIdentifier":"(0x000049bc, 0x00006c78)","type":0}]</Data>
 		</Entry>
 	</Metadata>
 </OpenViBE-Scenario>
