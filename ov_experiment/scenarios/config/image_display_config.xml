@@ -2,8 +2,36 @@
 	<SettingValue>true</SettingValue>
         <SettingValue>false</SettingValue>
         <SettingValue>OVTK_StimulationId_VisualStimulationStop</SettingValue>
-	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_1.png</SettingValue>
-	<SettingValue>OVTK_StimulationId_Label_01</SettingValue>
-	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_1.png</SettingValue>
-	<SettingValue>OVTK_StimulationId_Label_01</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_text_red_color_red.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_11</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_text_red_color_green.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_12</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_text_red_color_blue.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_13</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_text_red_color_yellow.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_14</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_text_green_color_red.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_21</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_text_green_color_green.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_22</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_text_green_color_blue.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_23</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_text_green_color_yellow.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_24</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_text_blue_color_red.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_31</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_text_blue_color_green.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_32</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_text_blue_color_blue.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_33</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_text_blue_color_yellow.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_34</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_text_yellow_color_red.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_41</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_text_yellow_color_green.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_42</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_text_yellow_color_blue.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_43</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_text_yellow_color_yellow.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_44</SettingValue>
 </OpenViBE-SettingsOverride>
