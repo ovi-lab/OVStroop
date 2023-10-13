@@ -1,0 +1,12 @@
+<OpenViBE-SettingsOverride>
+	<SettingValue>OVTK_StimulationId_Label_D0</SettingValue>
+	<SettingValue>false</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_D1</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/1.wav</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_D2</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/2.wav</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_D3</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/3.wav</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_D4</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/4.wav</SettingValue>
+</OpenViBE-SettingsOverride>

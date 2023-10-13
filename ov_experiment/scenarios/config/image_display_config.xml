@@ -1,5 +1,5 @@
 <OpenViBE-SettingsOverride>
-	<SettingValue>true</SettingValue>
+	<SettingValue>false</SettingValue>
         <SettingValue>false</SettingValue>
         <SettingValue>OVTK_StimulationId_VisualStimulationStop</SettingValue>
 	<SettingValue>${Player_ScenarioDirectory}/assets/stroop_stim_text_red_color_red.png</SettingValue>
