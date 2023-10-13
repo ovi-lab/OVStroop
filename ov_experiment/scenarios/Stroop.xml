@@ -435,6 +435,21 @@
 					<Value>OVTK_StimulationId_Label_16</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
+				<Setting>
+					<Identifier>(0x4cb7cf8d, 0x745b7fa9)</Identifier>
+					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
+					<Name>Cue Image 17</Name>
+					<DefaultValue>${Path_Data}/plugins/simple-visualization/p300-magic-card/17.png</DefaultValue>
+					<Value>${Path_Data}/plugins/simple-visualization/p300-magic-card/17.png</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<TypeIdentifier>(0x2c132d6e, 0x44ab0d97)</TypeIdentifier>
+					<Name>Stimulation 17</Name>
+					<DefaultValue>OVTK_StimulationId_Label_17</DefaultValue>
+					<Value>OVTK_GDF_Cross_On_Screen</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
 			</Settings>
 			<Attributes>
 				<Attribute>
@@ -1082,7 +1097,7 @@
 		<Entry>
 			<Identifier>(0x0000384a, 0x00001c7f)</Identifier>
 			<Type>(0x3bcce5d2, 0x43f2d968)</Type>
-			<Data>[{"boxIdentifier":"(0x000022c9, 0x00000427)","childCount":0,"identifier":"(0x00000b74, 0x0000640e)","parentIdentifier":"(0xffffffff, 0xffffffff)","type":3},{"boxIdentifier":"(0x00001779, 0x00003940)","childCount":0,"identifier":"(0x000028fb, 0x0000320b)","parentIdentifier":"(0xffffffff, 0xffffffff)","type":3},{"boxIdentifier":"(0xffffffff, 0xffffffff)","childCount":1,"height":320,"identifier":"(0x00003988, 0x000074c7)","name":"Default window","parentIdentifier":"(0xffffffff, 0xffffffff)","type":1,"width":475},{"boxIdentifier":"(0x00001228, 0x000060f8)","childCount":0,"identifier":"(0x00003c00, 0x000065f5)","parentIdentifier":"(0xffffffff, 0xffffffff)","type":3},{"boxIdentifier":"(0xffffffff, 0xffffffff)","childCount":1,"identifier":"(0x000049bc, 0x00006c78)","index":0,"name":"Default tab","parentIdentifier":"(0x00003988, 0x000074c7)","type":2},{"boxIdentifier":"(0xffffffff, 0xffffffff)","childCount":0,"identifier":"(0x0000557d, 0x00006fe9)","index":0,"name":"Empty","parentIdentifier":"(0x000049bc, 0x00006c78)","type":0}]</Data>
+			<Data>[{"boxIdentifier":"(0x000022c9, 0x00000427)","childCount":0,"identifier":"(0x00000b74, 0x0000640e)","parentIdentifier":"(0xffffffff, 0xffffffff)","type":3},{"boxIdentifier":"(0x00001779, 0x00003940)","childCount":0,"identifier":"(0x000028fb, 0x0000320b)","parentIdentifier":"(0xffffffff, 0xffffffff)","type":3},{"boxIdentifier":"(0x00001228, 0x000060f8)","childCount":0,"identifier":"(0x00003c00, 0x000065f5)","parentIdentifier":"(0xffffffff, 0xffffffff)","type":3},{"boxIdentifier":"(0xffffffff, 0xffffffff)","childCount":1,"height":320,"identifier":"(0x00006f19, 0x00004c8a)","name":"window 1","parentIdentifier":"(0xffffffff, 0xffffffff)","type":1,"width":475},{"boxIdentifier":"(0xffffffff, 0xffffffff)","childCount":1,"identifier":"(0x00003e3e, 0x00002c04)","index":0,"name":"Default tab","parentIdentifier":"(0x00006f19, 0x00004c8a)","type":2},{"boxIdentifier":"(0xffffffff, 0xffffffff)","childCount":0,"identifier":"(0x000027b6, 0x00005b1e)","index":0,"name":"Empty","parentIdentifier":"(0x00003e3e, 0x00002c04)","type":0}]</Data>
 		</Entry>
 	</Metadata>
 </OpenViBE-Scenario>
