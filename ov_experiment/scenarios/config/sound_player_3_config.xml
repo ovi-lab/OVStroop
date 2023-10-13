@@ -1,0 +1,6 @@
+<OpenViBE-SettingsOverride>
+    <SettingValue>OVTK_StimulationId_Label_D3</SettingValue>
+    <SettingValue>OVTK_StimulationId_Label_D0</SettingValue>
+    <SettingValue>${Player_ScenarioDirectory}/assets/3.wav</SettingValue>
+    <SettingValue>false</SettingValue>
+</OpenViBE-SettingsOverride>
