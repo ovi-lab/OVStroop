@@ -49,6 +49,116 @@
 			</Attributes>
 		</Box>
 		<Box>
+			<Identifier>(0x00001779, 0x00003940)</Identifier>
+			<Name>Signal display</Name>
+			<AlgorithmClassIdentifier>(0x0055be5f, 0x087bdd12)</AlgorithmClassIdentifier>
+			<Inputs>
+				<Input>
+					<TypeIdentifier>(0x5ba36127, 0x195feae1)</TypeIdentifier>
+					<Name>Data</Name>
+				</Input>
+				<Input>
+					<TypeIdentifier>(0x6f752dd0, 0x082a321e)</TypeIdentifier>
+					<Name>Stimulations</Name>
+				</Input>
+				<Input>
+					<TypeIdentifier>(0x6ab26b81, 0x0f8c02f3)</TypeIdentifier>
+					<Name>Channel Units</Name>
+				</Input>
+			</Inputs>
+			<Settings>
+				<Setting>
+					<TypeIdentifier>(0x5de046a6, 0x086340aa)</TypeIdentifier>
+					<Name>Display Mode</Name>
+					<DefaultValue>Scan</DefaultValue>
+					<Value>Scan</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<TypeIdentifier>(0x33a30739, 0x00d5299b)</TypeIdentifier>
+					<Name>Auto vertical scale</Name>
+					<DefaultValue>Per channel</DefaultValue>
+					<Value>Per channel</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<TypeIdentifier>(0x512a166f, 0x5c3ef83f)</TypeIdentifier>
+					<Name>Scale refresh interval (secs)</Name>
+					<DefaultValue>5</DefaultValue>
+					<Value>5</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<TypeIdentifier>(0x512a166f, 0x5c3ef83f)</TypeIdentifier>
+					<Name>Vertical Scale</Name>
+					<DefaultValue>100</DefaultValue>
+					<Value>100</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<TypeIdentifier>(0x512a166f, 0x5c3ef83f)</TypeIdentifier>
+					<Name>Vertical Offset</Name>
+					<DefaultValue>0</DefaultValue>
+					<Value>0</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<TypeIdentifier>(0x512a166f, 0x5c3ef83f)</TypeIdentifier>
+					<Name>Time Scale</Name>
+					<DefaultValue>10</DefaultValue>
+					<Value>10</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<TypeIdentifier>(0x2cdb2f0b, 0x12f231ea)</TypeIdentifier>
+					<Name>Bottom ruler</Name>
+					<DefaultValue>true</DefaultValue>
+					<Value>true</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<TypeIdentifier>(0x2cdb2f0b, 0x12f231ea)</TypeIdentifier>
+					<Name>Left ruler</Name>
+					<DefaultValue>false</DefaultValue>
+					<Value>false</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<TypeIdentifier>(0x2cdb2f0b, 0x12f231ea)</TypeIdentifier>
+					<Name>Multiview</Name>
+					<DefaultValue>false</DefaultValue>
+					<Value>false</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+			</Settings>
+			<Attributes>
+				<Attribute>
+					<Identifier>(0x1fa7a38f, 0x54edbe0b)</Identifier>
+					<Value>432</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
+					<Value>336</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x4e7b798a, 0x183beafb)</Identifier>
+					<Value>(0x92c056a7, 0x2dc71aff)</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x527ad68d, 0x16d746a0)</Identifier>
+					<Value></Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xce18836a, 0x9c0eb403)</Identifier>
+					<Value>9</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xcfad85b0, 0x7c6d841c)</Identifier>
+					<Value>3</Value>
+				</Attribute>
+			</Attributes>
+		</Box>
+		<Box>
 			<Identifier>(0x000022c9, 0x00000427)</Identifier>
 			<Name>Display cue image</Name>
 			<AlgorithmClassIdentifier>(0x005789a4, 0x3ab78a36)</AlgorithmClassIdentifier>
@@ -734,52 +844,49 @@
 			</Attributes>
 		</Box>
 		<Box>
-			<Identifier>(0x00006322, 0x00000abf)</Identifier>
-			<Name>EDF File Writer</Name>
-			<AlgorithmClassIdentifier>(0x0d454dce, 0x470a4c02)</AlgorithmClassIdentifier>
+			<Identifier>(0x00005096, 0x00001ea2)</Identifier>
+			<Name>Stimulation multiplexer</Name>
+			<AlgorithmClassIdentifier>(0x07db4efa, 0x472b0938)</AlgorithmClassIdentifier>
 			<Inputs>
 				<Input>
-					<TypeIdentifier>(0x403488e7, 0x565d70b6)</TypeIdentifier>
-					<Name>Experiment information</Name>
-				</Input>
-				<Input>
-					<TypeIdentifier>(0x5ba36127, 0x195feae1)</TypeIdentifier>
-					<Name>Signal</Name>
+					<TypeIdentifier>(0x6f752dd0, 0x082a321e)</TypeIdentifier>
+					<Name>Input stimulations 1</Name>
 				</Input>
 				<Input>
 					<TypeIdentifier>(0x6f752dd0, 0x082a321e)</TypeIdentifier>
-					<Name>Stimulations</Name>
+					<Name>Input stimulations 2</Name>
 				</Input>
 			</Inputs>
-			<Settings>
-				<Setting>
-					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
-					<Name>Filename</Name>
-					<DefaultValue>record-[$core{date}-$core{time}].edf</DefaultValue>
-					<Value>${Player_ScenarioDirectory}/data/record-[$core{date}-$core{time}].edf</Value>
-					<Modifiability>false</Modifiability>
-				</Setting>
-			</Settings>
+			<Outputs>
+				<Output>
+					<TypeIdentifier>(0x6f752dd0, 0x082a321e)</TypeIdentifier>
+					<Name>Multiplexed stimulations</Name>
+				</Output>
+			</Outputs>
 			<Attributes>
 				<Attribute>
 					<Identifier>(0x1fa7a38f, 0x54edbe0b)</Identifier>
-					<Value>432</Value>
+					<Value>176</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
-					<Value>320</Value>
+					<Value>512</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0x4e7b798a, 0x183beafb)</Identifier>
-					<Value>(0xd41e3037, 0xcc12644a)</Value>
+					<Value>(0xe7af82cd, 0x14edb4d4)</Value>
 				</Attribute>
 				<Attribute>
-					<Identifier>(0xce18836a, 0x9c0eb403)</Identifier>
+					<Identifier>(0xc80ce8af, 0xf699f813)</Identifier>
 					<Value>1</Value>
 				</Attribute>
 				<Attribute>
 					<Identifier>(0xcfad85b0, 0x7c6d841c)</Identifier>
-					<Value>3</Value>
+					<Value>2</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xfba64161, 0x65304e21)</Identifier>
+					<Value></Value>
 				</Attribute>
 			</Attributes>
 		</Box>
@@ -944,42 +1051,64 @@
 	</Boxes>
 	<Links>
 		<Link>
-			<Identifier>(0x0000013e, 0x000052e4)</Identifier>
+			<Identifier>(0x00000ae8, 0x00006e07)</Identifier>
 			<Source>
-				<BoxIdentifier>(0x000074fb, 0x00005daf)</BoxIdentifier>
-				<BoxOutputIndex>2</BoxOutputIndex>
+				<BoxIdentifier>(0x00005096, 0x00001ea2)</BoxIdentifier>
+				<BoxOutputIndex>0</BoxOutputIndex>
 			</Source>
 			<Target>
-				<BoxIdentifier>(0x00006322, 0x00000abf)</BoxIdentifier>
-				<BoxInputIndex>2</BoxInputIndex>
+				<BoxIdentifier>(0x00002e97, 0x00007a18)</BoxIdentifier>
+				<BoxInputIndex>0</BoxInputIndex>
 			</Target>
 		</Link>
 		<Link>
-			<Identifier>(0x00000210, 0x000015fd)</Identifier>
+			<Identifier>(0x00001000, 0x0000272c)</Identifier>
+			<Source>
+				<BoxIdentifier>(0x00005096, 0x00001ea2)</BoxIdentifier>
+				<BoxOutputIndex>0</BoxOutputIndex>
+			</Source>
+			<Target>
+				<BoxIdentifier>(0x00002e97, 0x00007a1a)</BoxIdentifier>
+				<BoxInputIndex>0</BoxInputIndex>
+			</Target>
+		</Link>
+		<Link>
+			<Identifier>(0x0000275c, 0x000049d9)</Identifier>
+			<Source>
+				<BoxIdentifier>(0x00006758, 0x00002ec3)</BoxIdentifier>
+				<BoxOutputIndex>0</BoxOutputIndex>
+			</Source>
+			<Target>
+				<BoxIdentifier>(0x00005096, 0x00001ea2)</BoxIdentifier>
+				<BoxInputIndex>0</BoxInputIndex>
+			</Target>
+		</Link>
+		<Link>
+			<Identifier>(0x00002ac9, 0x000030f8)</Identifier>
+			<Source>
+				<BoxIdentifier>(0x00005096, 0x00001ea2)</BoxIdentifier>
+				<BoxOutputIndex>0</BoxOutputIndex>
+			</Source>
+			<Target>
+				<BoxIdentifier>(0x00002e97, 0x00007a19)</BoxIdentifier>
+				<BoxInputIndex>0</BoxInputIndex>
+			</Target>
+		</Link>
+		<Link>
+			<Identifier>(0x00003b94, 0x0000685b)</Identifier>
 			<Source>
 				<BoxIdentifier>(0x000074fb, 0x00005daf)</BoxIdentifier>
 				<BoxOutputIndex>1</BoxOutputIndex>
 			</Source>
 			<Target>
-				<BoxIdentifier>(0x00006322, 0x00000abf)</BoxIdentifier>
-				<BoxInputIndex>1</BoxInputIndex>
-			</Target>
-		</Link>
-		<Link>
-			<Identifier>(0x00001114, 0x00004ceb)</Identifier>
-			<Source>
-				<BoxIdentifier>(0x000074fb, 0x00005daf)</BoxIdentifier>
-				<BoxOutputIndex>0</BoxOutputIndex>
-			</Source>
-			<Target>
-				<BoxIdentifier>(0x00006322, 0x00000abf)</BoxIdentifier>
+				<BoxIdentifier>(0x00001779, 0x00003940)</BoxIdentifier>
 				<BoxInputIndex>0</BoxInputIndex>
 			</Target>
 		</Link>
 		<Link>
-			<Identifier>(0x00001359, 0x0000658b)</Identifier>
+			<Identifier>(0x00003c55, 0x000060da)</Identifier>
 			<Source>
-				<BoxIdentifier>(0x00006758, 0x00002ec3)</BoxIdentifier>
+				<BoxIdentifier>(0x00005096, 0x00001ea2)</BoxIdentifier>
 				<BoxOutputIndex>0</BoxOutputIndex>
 			</Source>
 			<Target>
@@ -988,14 +1117,25 @@
 			</Target>
 		</Link>
 		<Link>
-			<Identifier>(0x000026f1, 0x00003a05)</Identifier>
+			<Identifier>(0x00005044, 0x00000ab2)</Identifier>
 			<Source>
-				<BoxIdentifier>(0x00006758, 0x00002ec3)</BoxIdentifier>
+				<BoxIdentifier>(0x000074fb, 0x00005daf)</BoxIdentifier>
+				<BoxOutputIndex>2</BoxOutputIndex>
+			</Source>
+			<Target>
+				<BoxIdentifier>(0x00001779, 0x00003940)</BoxIdentifier>
+				<BoxInputIndex>1</BoxInputIndex>
+			</Target>
+		</Link>
+		<Link>
+			<Identifier>(0x000051f7, 0x00007f10)</Identifier>
+			<Source>
+				<BoxIdentifier>(0x00001228, 0x000060f8)</BoxIdentifier>
 				<BoxOutputIndex>0</BoxOutputIndex>
 			</Source>
 			<Target>
-				<BoxIdentifier>(0x00002e97, 0x00007a18)</BoxIdentifier>
-				<BoxInputIndex>0</BoxInputIndex>
+				<BoxIdentifier>(0x00005096, 0x00001ea2)</BoxIdentifier>
+				<BoxInputIndex>1</BoxInputIndex>
 			</Target>
 		</Link>
 		<Link>
@@ -1010,35 +1150,13 @@
 			</Target>
 		</Link>
 		<Link>
-			<Identifier>(0x00005de7, 0x000001cd)</Identifier>
+			<Identifier>(0x00007ccd, 0x00006ac0)</Identifier>
 			<Source>
-				<BoxIdentifier>(0x00006758, 0x00002ec3)</BoxIdentifier>
-				<BoxOutputIndex>0</BoxOutputIndex>
-			</Source>
-			<Target>
-				<BoxIdentifier>(0x00002e97, 0x00007a19)</BoxIdentifier>
-				<BoxInputIndex>0</BoxInputIndex>
-			</Target>
-		</Link>
-		<Link>
-			<Identifier>(0x000068ab, 0x00001690)</Identifier>
-			<Source>
-				<BoxIdentifier>(0x00006758, 0x00002ec3)</BoxIdentifier>
+				<BoxIdentifier>(0x00005096, 0x00001ea2)</BoxIdentifier>
 				<BoxOutputIndex>0</BoxOutputIndex>
 			</Source>
 			<Target>
 				<BoxIdentifier>(0x000022c9, 0x00000427)</BoxIdentifier>
-				<BoxInputIndex>0</BoxInputIndex>
-			</Target>
-		</Link>
-		<Link>
-			<Identifier>(0x00007565, 0x00000636)</Identifier>
-			<Source>
-				<BoxIdentifier>(0x00006758, 0x00002ec3)</BoxIdentifier>
-				<BoxOutputIndex>0</BoxOutputIndex>
-			</Source>
-			<Target>
-				<BoxIdentifier>(0x00002e97, 0x00007a1a)</BoxIdentifier>
 				<BoxInputIndex>0</BoxInputIndex>
 			</Target>
 		</Link>
@@ -1048,7 +1166,7 @@
 		<Entry>
 			<Identifier>(0x0000384a, 0x00001c7f)</Identifier>
 			<Type>(0x3bcce5d2, 0x43f2d968)</Type>
-			<Data>[{"boxIdentifier":"(0x000022c9, 0x00000427)","childCount":0,"identifier":"(0x00000b74, 0x0000640e)","parentIdentifier":"(0xffffffff, 0xffffffff)","type":3},{"boxIdentifier":"(0x00001228, 0x000060f8)","childCount":0,"identifier":"(0x00003c00, 0x000065f5)","parentIdentifier":"(0xffffffff, 0xffffffff)","type":3},{"boxIdentifier":"(0xffffffff, 0xffffffff)","childCount":1,"height":320,"identifier":"(0x00006f19, 0x00004c8a)","name":"window 1","parentIdentifier":"(0xffffffff, 0xffffffff)","type":1,"width":475},{"boxIdentifier":"(0xffffffff, 0xffffffff)","childCount":1,"identifier":"(0x00003e3e, 0x00002c04)","index":0,"name":"Default tab","parentIdentifier":"(0x00006f19, 0x00004c8a)","type":2},{"boxIdentifier":"(0xffffffff, 0xffffffff)","childCount":0,"identifier":"(0x000027b6, 0x00005b1e)","index":0,"name":"Empty","parentIdentifier":"(0x00003e3e, 0x00002c04)","type":0}]</Data>
+			<Data>[{"boxIdentifier":"(0x00001228, 0x000060f8)","childCount":0,"identifier":"(0x00003c00, 0x000065f5)","parentIdentifier":"(0xffffffff, 0xffffffff)","type":3},{"boxIdentifier":"(0xffffffff, 0xffffffff)","childCount":1,"height":320,"identifier":"(0x00006f19, 0x00004c8a)","name":"window 1","parentIdentifier":"(0xffffffff, 0xffffffff)","type":1,"width":475},{"boxIdentifier":"(0xffffffff, 0xffffffff)","childCount":1,"identifier":"(0x00003e3e, 0x00002c04)","index":0,"name":"Default tab","parentIdentifier":"(0x00006f19, 0x00004c8a)","type":2},{"boxIdentifier":"(0xffffffff, 0xffffffff)","childCount":2,"dividerPosition":221,"identifier":"(0x00004acf, 0x000005a9)","index":0,"maxDividerPosition":455,"name":"Horizontal split","parentIdentifier":"(0x00003e3e, 0x00002c04)","type":5},{"boxIdentifier":"(0x000022c9, 0x00000427)","childCount":0,"identifier":"(0x00000b74, 0x0000640e)","index":0,"parentIdentifier":"(0x00004acf, 0x000005a9)","type":3},{"boxIdentifier":"(0x00001779, 0x00003940)","childCount":0,"identifier":"(0x000028fb, 0x0000320b)","index":1,"parentIdentifier":"(0x00004acf, 0x000005a9)","type":3}]</Data>
 		</Entry>
 	</Metadata>
 </OpenViBE-Scenario>
