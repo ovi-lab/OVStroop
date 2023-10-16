@@ -29,7 +29,7 @@ for message in colors:
         imgDraw.text(xy, message, font=font, fill=textColor)
         
         # Save the image
-        fileDir = os.path.abspath(os.path.join("..", "assets"))
+        fileDir = os.path.abspath(os.path.join("..\ov_experiment\scenarios", "assets"))
         filename = f"stroop_stim_text_{message}_color_{textColor}.png"
         img.save(os.path.join(fileDir, filename))
         

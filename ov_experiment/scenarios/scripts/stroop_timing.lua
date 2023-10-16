@@ -94,9 +94,9 @@ function process(box)
             box:send_stimulation(1, OVTK_GDF_Start_Of_Trial, t, 0)
             if blocks[b] == 'D'
             then
-                -- -- pick a random imdex
+                -- -- pick a random index
                 box:log("Trace",distractor_triggers)
-                box:send_stimulation(1, distractor_triggers[math.random(#distractor_triggers)] , t, 0)
+                box:send_stimulation(1, distractor_triggers[math.random(4)] , t, 0)
             end
             -- FIXATION POINT
             box:send_stimulation(1, OVTK_GDF_Cross_On_Screen, t, 0)
