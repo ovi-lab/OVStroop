@@ -6,7 +6,8 @@ function initialize(box)
     -- baseline_duration = box:get_setting(5) --sec
     target_display = 2 --sec
     target_nbr = 48
-    baseline_duration = 1 --sec
+    baseline_duration = 1.5 --sec
+    stim_break = 1 --sec
     color_trigger_list =  {
         OVTK_StimulationId_Label_11, -- red in red
         OVTK_StimulationId_Label_11, -- red in red
@@ -83,15 +84,29 @@ function process(box)
     end
     local t=0
     -- manages baseline
-    box:send_stimulation(1, OVTK_StimulationId_ExperimentStart, t, 0)
-    -- todo: add instructions image
+    box:send_stimulation(1, OVTK_StimulationId_ExperimentStart, t, 0) -- Instruction 1
+    -- todo: add Instrcution image
     t = t + 5
+    box:send_stimulation(1, OVTK_GDF_Start, t, 0)
+
+    -- todo: instruction
+    box:send_stimulation(1, OVTK_StimulationId_Label_00, t, 0)  -- Instruction 2
+    t = t + 5 
+
+    box:send_stimulation(1, OVTK_StimulationId_Label_01, t, 0)  -- Instruction 3
+    t = t + 5 
+    
+
     for b = 1, #blocks do
         Shuffled_color_list = Shuffle(color_trigger_list)
+
+        box:send_stimulation(1, OVTK_StimulationId_Label_02, t, 0)  -- start of a block
+        t = t + 3 
+
     -- manages trials
         for i = 1, target_nbr do
             -- start of trial
-            box:send_stimulation(1, OVTK_GDF_Start_Of_Trial, t, 0)
+          
             if blocks[b] == 'D'
             then
                 -- -- pick a random index
@@ -110,9 +125,19 @@ function process(box)
                 box:send_stimulation(1,OVTK_StimulationId_Label_D0  , t, 0)
             end
             -- ends trial
-            box:send_stimulation(1, OVTK_GDF_End_Of_Trial, t, 0)
+            box:send_stimulation(1,OVTK_StimulationId_VisualStimulationStop  , t, 0)
+            t =  t+ stim_break
         end
+
+        box:send_stimulation(1, OVTK_StimulationId_Label_03, t, 0)  -- end of the block
+        t = t + 3 
+
     end
+
+    
+    box:send_stimulation(1, OVTK_GDF_End_Of_Session, t, 0)
     -- used to cause the acquisition scenario to stop
     box:send_stimulation(1, OVTK_StimulationId_ExperimentStop, t, 0)
+    t = t + 3
+
 end
