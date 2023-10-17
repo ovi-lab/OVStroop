@@ -64,6 +64,67 @@
 			</Attributes>
 		</Box>
 		<Box>
+			<Identifier>(0x00001ab3, 0x000040ad)</Identifier>
+			<Name>Generic stream writer</Name>
+			<AlgorithmClassIdentifier>(0x09c92218, 0x7c1216f8)</AlgorithmClassIdentifier>
+			<Inputs>
+				<Input>
+					<TypeIdentifier>(0x5ba36127, 0x195feae1)</TypeIdentifier>
+					<Name>Input Signal</Name>
+				</Input>
+				<Input>
+					<TypeIdentifier>(0x6f752dd0, 0x082a321e)</TypeIdentifier>
+					<Name>Input Stimulations</Name>
+				</Input>
+			</Inputs>
+			<Settings>
+				<Setting>
+					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
+					<Name>Filename</Name>
+					<DefaultValue>record-[$core{date}-$core{time}].ov</DefaultValue>
+					<Value>${Player_ScenarioDirectory}/data/record_p-$var{Participant}_b-$var{Block}_$core{date}-$core{time}.ov</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+				<Setting>
+					<TypeIdentifier>(0x2cdb2f0b, 0x12f231ea)</TypeIdentifier>
+					<Name>Use compression</Name>
+					<DefaultValue>false</DefaultValue>
+					<Value>false</Value>
+					<Modifiability>false</Modifiability>
+				</Setting>
+			</Settings>
+			<Attributes>
+				<Attribute>
+					<Identifier>(0x1fa7a38f, 0x54edbe0b)</Identifier>
+					<Value>432</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
+					<Value>320</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x4e7b798a, 0x183beafb)</Identifier>
+					<Value>(0x89a08108, 0xc8d1fac1)</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0x527ad68d, 0x16d746a0)</Identifier>
+					<Value></Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xce18836a, 0x9c0eb403)</Identifier>
+					<Value>2</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xcfad85b0, 0x7c6d841c)</Identifier>
+					<Value>1</Value>
+				</Attribute>
+				<Attribute>
+					<Identifier>(0xfba64161, 0x65304e21)</Identifier>
+					<Value></Value>
+				</Attribute>
+			</Attributes>
+		</Box>
+		<Box>
 			<Identifier>(0x000022c9, 0x00000427)</Identifier>
 			<Name>Display cue image</Name>
 			<AlgorithmClassIdentifier>(0x005789a4, 0x3ab78a36)</AlgorithmClassIdentifier>
@@ -839,56 +900,6 @@
 			</Attributes>
 		</Box>
 		<Box>
-			<Identifier>(0x00006322, 0x00000abf)</Identifier>
-			<Name>EDF File Writer</Name>
-			<AlgorithmClassIdentifier>(0x0d454dce, 0x470a4c02)</AlgorithmClassIdentifier>
-			<Inputs>
-				<Input>
-					<TypeIdentifier>(0x403488e7, 0x565d70b6)</TypeIdentifier>
-					<Name>Experiment information</Name>
-				</Input>
-				<Input>
-					<TypeIdentifier>(0x5ba36127, 0x195feae1)</TypeIdentifier>
-					<Name>Signal</Name>
-				</Input>
-				<Input>
-					<TypeIdentifier>(0x6f752dd0, 0x082a321e)</TypeIdentifier>
-					<Name>Stimulations</Name>
-				</Input>
-			</Inputs>
-			<Settings>
-				<Setting>
-					<TypeIdentifier>(0x330306dd, 0x74a95f98)</TypeIdentifier>
-					<Name>Filename</Name>
-					<DefaultValue>record-[$core{date}-$core{time}].edf</DefaultValue>
-					<Value>${Player_ScenarioDirectory}/data/record_p-$var{Participant}_b-$var{Block}_$core{date}-$core{time}.edf</Value>
-					<Modifiability>false</Modifiability>
-				</Setting>
-			</Settings>
-			<Attributes>
-				<Attribute>
-					<Identifier>(0x1fa7a38f, 0x54edbe0b)</Identifier>
-					<Value>432</Value>
-				</Attribute>
-				<Attribute>
-					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
-					<Value>320</Value>
-				</Attribute>
-				<Attribute>
-					<Identifier>(0x4e7b798a, 0x183beafb)</Identifier>
-					<Value>(0xd41e3037, 0xcc12644a)</Value>
-				</Attribute>
-				<Attribute>
-					<Identifier>(0xce18836a, 0x9c0eb403)</Identifier>
-					<Value>1</Value>
-				</Attribute>
-				<Attribute>
-					<Identifier>(0xcfad85b0, 0x7c6d841c)</Identifier>
-					<Value>3</Value>
-				</Attribute>
-			</Attributes>
-		</Box>
-		<Box>
 			<Identifier>(0x00006758, 0x00002ec3)</Identifier>
 			<Name>Lua Stimulator</Name>
 			<AlgorithmClassIdentifier>(0x0b5a2787, 0x02750621)</AlgorithmClassIdentifier>
@@ -917,7 +928,7 @@
 					<TypeIdentifier>(0x007deef9, 0x2f3e95c6)</TypeIdentifier>
 					<Name>Target nbr</Name>
 					<DefaultValue>48</DefaultValue>
-					<Value>48</Value>
+					<Value>1</Value>
 					<Modifiability>false</Modifiability>
 				</Setting>
 				<Setting>
@@ -1049,35 +1060,13 @@
 	</Boxes>
 	<Links>
 		<Link>
-			<Identifier>(0x0000013e, 0x000052e4)</Identifier>
-			<Source>
-				<BoxIdentifier>(0x000074fb, 0x00005daf)</BoxIdentifier>
-				<BoxOutputIndex>2</BoxOutputIndex>
-			</Source>
-			<Target>
-				<BoxIdentifier>(0x00006322, 0x00000abf)</BoxIdentifier>
-				<BoxInputIndex>2</BoxInputIndex>
-			</Target>
-		</Link>
-		<Link>
-			<Identifier>(0x00000210, 0x000015fd)</Identifier>
+			<Identifier>(0x000003b8, 0x00007ab0)</Identifier>
 			<Source>
 				<BoxIdentifier>(0x000074fb, 0x00005daf)</BoxIdentifier>
 				<BoxOutputIndex>1</BoxOutputIndex>
 			</Source>
 			<Target>
-				<BoxIdentifier>(0x00006322, 0x00000abf)</BoxIdentifier>
-				<BoxInputIndex>1</BoxInputIndex>
-			</Target>
-		</Link>
-		<Link>
-			<Identifier>(0x00001114, 0x00004ceb)</Identifier>
-			<Source>
-				<BoxIdentifier>(0x000074fb, 0x00005daf)</BoxIdentifier>
-				<BoxOutputIndex>0</BoxOutputIndex>
-			</Source>
-			<Target>
-				<BoxIdentifier>(0x00006322, 0x00000abf)</BoxIdentifier>
+				<BoxIdentifier>(0x00001ab3, 0x000040ad)</BoxIdentifier>
 				<BoxInputIndex>0</BoxInputIndex>
 			</Target>
 		</Link>
@@ -1145,6 +1134,17 @@
 			<Target>
 				<BoxIdentifier>(0x00002e97, 0x00007a1a)</BoxIdentifier>
 				<BoxInputIndex>0</BoxInputIndex>
+			</Target>
+		</Link>
+		<Link>
+			<Identifier>(0x000079eb, 0x00004ab7)</Identifier>
+			<Source>
+				<BoxIdentifier>(0x000074fb, 0x00005daf)</BoxIdentifier>
+				<BoxOutputIndex>2</BoxOutputIndex>
+			</Source>
+			<Target>
+				<BoxIdentifier>(0x00001ab3, 0x000040ad)</BoxIdentifier>
+				<BoxInputIndex>1</BoxInputIndex>
 			</Target>
 		</Link>
 	</Links>
