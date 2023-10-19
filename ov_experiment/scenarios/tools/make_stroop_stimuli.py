@@ -57,6 +57,14 @@ def makeInstructions() -> None:
                 {
                     'msg' : "Start of the Block",
                     'color' : "white"
+                },
+                {
+                    'msg' : "",
+                    'color' : "white"
+                },
+                {
+                    'msg' : "Press SPACE to continue",
+                    'color' : "white"
                 }
             ]
         },
