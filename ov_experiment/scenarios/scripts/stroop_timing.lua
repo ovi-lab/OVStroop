@@ -72,30 +72,25 @@ function initialize(box)
         OVTK_StimulationId_Label_D4
     }
 end
+
 function wait_until(box, time)
     while box:get_current_time() < time do
       box:sleep()
     end
-  end
+end
+
 function pause_stroop(box)
     while box:keep_processing() do
-        --box:log("Trace", string.format("made it 1111111111"))
         -- loops on all inputs of the box
         input_count = box:get_input_count()
-        -- box:log("Trace", string.format("Input count: %d", input_count))
         for input = 1, input_count do
-            -- box:log("Trace", string.format("made it 22222222"))
             -- loops on every received stimulation for a given input
             for stimulation = 1, box:get_stimulation_count(input) do
                 -- gets the received stimulation
                 identifier, date, duration = box:get_stimulation(input, 1)
-                -- logs the received stimulation
-                -- box:log("Trace", string.format("At time %f %f on input %i got stimulation id:%s date:%s duration:%s",t,  t, input, identifier, date, duration))
-                box:log("Trace", "foo")
                 -- discards it
                 box:remove_stimulation(input, 1)
                 -- triggers a new OVTK_StimulationId_Label_00 stimulation five seconds after
-                --box:send_stimulation(1, OVTK_StimulationId_Label_00, t+5, 0)
                 if identifier == OVTK_StimulationId_Number_1B
                 then
                     return date
@@ -106,6 +101,7 @@ function pause_stroop(box)
         box:sleep()
     end
 end
+
 function process(box)
     local function Shuffle(list)
         local s = {}
@@ -116,23 +112,23 @@ function process(box)
         end
         return s
     end
+    
     local t=0
     -- manages baseline
     box:send_stimulation(1, OVTK_StimulationId_ExperimentStart, t, 0) -- Instruction 1
-    -- todo: add Instrcution image
-    t = t + 5
-    box:send_stimulation(1, OVTK_GDF_Start, t, 0)
-    -- todo: instruction
-    box:send_stimulation(1, OVTK_StimulationId_Label_00, t, 0)  -- Instruction 2
-    t = t + 5
-    box:send_stimulation(1, OVTK_StimulationId_Label_01, t, 0)  -- Instruction 3
-    t = t + 5
+    t_response = pause_stroop(box)
+    box:send_stimulation(1, OVTK_StimulationId_Label_00, t_response + 0.5, 0)  -- Instruction 2
+    t_response = pause_stroop(box)
+    box:send_stimulation(1, OVTK_StimulationId_Label_01, t_response + 0.5, 0)  -- Instruction 3
+    t_response = pause_stroop(box)
+    t = t_response + 0.5
+
     for b = 1, #blocks do
         Shuffled_color_list = Shuffle(color_trigger_list)
         box:send_stimulation(1, OVTK_StimulationId_Label_02, t, 0)  -- start of a block
         date = pause_stroop(box)
         t = date + 1
-    -- manages trials
+        -- manages trials
         for i = 1, target_nbr do
             -- start of trial
             if blocks[b] == 'D'
