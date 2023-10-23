@@ -39,21 +39,21 @@
 
 
 	<SettingValue>${Player_ScenarioDirectory}/assets/ins1.png</SettingValue>
-	<SettingValue>OVTK_StimulationId_ExperimentStart</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_01</SettingValue>
 
 	<SettingValue>${Player_ScenarioDirectory}/assets/ins2.png</SettingValue>
-	<SettingValue>OVTK_StimulationId_Label_00</SettingValue>
-
-	<SettingValue>${Player_ScenarioDirectory}/assets/ins3.png</SettingValue>
-	<SettingValue>OVTK_StimulationId_Label_01</SettingValue>
-	
-	<SettingValue>${Player_ScenarioDirectory}/assets/start_block.png</SettingValue>
 	<SettingValue>OVTK_StimulationId_Label_02</SettingValue>
 
-	<SettingValue>${Player_ScenarioDirectory}/assets/end_block.png</SettingValue>
+	<SettingValue>${Player_ScenarioDirectory}/assets/ins3.png</SettingValue>
 	<SettingValue>OVTK_StimulationId_Label_03</SettingValue>
+	
+	<SettingValue>${Player_ScenarioDirectory}/assets/start_block.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_04</SettingValue>
+
+	<SettingValue>${Player_ScenarioDirectory}/assets/end_block.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_05</SettingValue>
 
 	<SettingValue>${Player_ScenarioDirectory}/assets/end.png</SettingValue>
-	<SettingValue>OVTK_StimulationId_ExperimentStop</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_06</SettingValue>
 
 </OpenViBE-SettingsOverride>

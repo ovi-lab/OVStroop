@@ -1,13 +1,11 @@
 function initialize(box)
     dofile(box:get_config("${Path_Data}") .. "/plugins/stimulation/lua-stimulator-stim-codes.lua")
-    --in second
-    -- target_display = box:get_setting(2) --sec
-    -- target_nbr = box:get_setting(3)
-    -- baseline_duration = box:get_setting(5) --sec
-    target_display = 2 --sec
-    target_nbr = 1
+
+    num_trials = box:get_setting(2)
+    stimulus_duration = 2 --sec
     baseline_duration = 1.5 --sec
-    stim_break = 1 --sec
+    break_duration = 1 --sec
+
     color_trigger_list =  {
         OVTK_StimulationId_Label_11, -- red in red
         OVTK_StimulationId_Label_11, -- red in red
@@ -58,6 +56,7 @@ function initialize(box)
         OVTK_StimulationId_Label_44, -- yellow in yellow
         OVTK_StimulationId_Label_44, -- yellow in yellow
     }
+
     math.randomseed(os.time())
     if(math.random(0,1)> 0.5)
     then
@@ -65,6 +64,7 @@ function initialize(box)
     else
         blocks = {'ND', 'D', 'ND', 'D'}
     end
+
     distractor_triggers ={
         OVTK_StimulationId_Label_D1,
         OVTK_StimulationId_Label_D2,
@@ -72,95 +72,150 @@ function initialize(box)
         OVTK_StimulationId_Label_D4
     }
 end
-function wait_until(box, time)
-    while box:get_current_time() < time do
-      box:sleep()
-    end
-  end
-function pause_stroop(box)
+
+local function wait_for_continue(box)
+    -- loop until box:keep_processing() returns zero
+	-- cpu will be released with a call to sleep
+	-- at the end of the loop
     while box:keep_processing() do
-        --box:log("Trace", string.format("made it 1111111111"))
-        -- loops on all inputs of the box
-        input_count = box:get_input_count()
-        -- box:log("Trace", string.format("Input count: %d", input_count))
-        for input = 1, input_count do
-            -- box:log("Trace", string.format("made it 22222222"))
-            -- loops on every received stimulation for a given input
+
+        -- specify the stimulation that implies to stop waiting
+        local target_stimulation = OVTK_StimulationId_Number_1B
+
+        -- get current simulated time
+        local t = box:get_current_time()
+
+        -- loop through all inputs of the box
+        for input = 1, box:get_input_count() do
+            
+            -- loop through every received stimulation for the input
             for stimulation = 1, box:get_stimulation_count(input) do
-                -- gets the received stimulation
-                identifier, date, duration = box:get_stimulation(input, 1)
-                -- logs the received stimulation
-                -- box:log("Trace", string.format("At time %f %f on input %i got stimulation id:%s date:%s duration:%s",t,  t, input, identifier, date, duration))
-                box:log("Trace", "foo")
-                -- discards it
+
+                -- get the received stimulation and discard it
+                local identifier, _, _ = box:get_stimulation(input, 1)
                 box:remove_stimulation(input, 1)
-                -- triggers a new OVTK_StimulationId_Label_00 stimulation five seconds after
-                --box:send_stimulation(1, OVTK_StimulationId_Label_00, t+5, 0)
-                if identifier == OVTK_StimulationId_Number_1B
-                then
-                    return date
+
+                -- return the time if the target stimulation is was received
+                if identifier == target_stimulation then
+                    return t
                 end
+
             end
+
         end
-        wait_until(box, box:get_current_time() + 0.5)
+        
+        -- release cpu
         box:sleep()
     end
 end
-function process(box)
-    local function Shuffle(list)
-        local s = {}
-        for i = 1, #list do s[i] = list[i] end
-        for i = #list, 2, -1 do
-            local j = math.random(i)
-            s[i], s[j] = s[j], s[i]
-        end
-        return s
+
+local function shuffle_arr(arr)
+    local s = {}
+
+    -- copy original array
+    for k, _ in ipairs(arr) do
+        s[k] = arr[k]
     end
-    local t=0
-    -- manages baseline
-    box:send_stimulation(1, OVTK_StimulationId_ExperimentStart, t, 0) -- Instruction 1
-    -- todo: add Instrcution image
-    t = t + 5
-    box:send_stimulation(1, OVTK_GDF_Start, t, 0)
-    -- todo: instruction
-    box:send_stimulation(1, OVTK_StimulationId_Label_00, t, 0)  -- Instruction 2
-    t = t + 5
-    box:send_stimulation(1, OVTK_StimulationId_Label_01, t, 0)  -- Instruction 3
-    t = t + 5
-    for b = 1, #blocks do
-        Shuffled_color_list = Shuffle(color_trigger_list)
-        box:send_stimulation(1, OVTK_StimulationId_Label_02, t, 0)  -- start of a block
-        date = pause_stroop(box)
-        t = date + 1
-    -- manages trials
-        for i = 1, target_nbr do
-            -- start of trial
-            if blocks[b] == 'D'
-            then
-                -- -- pick a random index
-                box:log("Trace",distractor_triggers)
-                box:send_stimulation(1, distractor_triggers[math.random(4)] , t, 0)
+
+    -- shuffle the copied array
+    for i = #arr, 2, -1 do
+        local j = math.random(i)
+        s[i], s[j] = s[j], s[i]
+    end
+
+    return s
+end
+
+local function wait_until(box, time)  
+    while box:get_current_time() < time do  
+      box:sleep()  
+    end  
+end 
+
+-- this function is called once by the box
+function process(box)
+
+	local t = box:get_current_time()
+
+    -- start the experiment
+    box:send_stimulation(1, OVTK_StimulationId_ExperimentStart, t, 0)
+
+    -- display the instructions
+    local instructions = {
+        OVTK_StimulationId_Label_01,    -- displays instruction 1
+        OVTK_StimulationId_Label_02,    -- displays instruction 2
+        OVTK_StimulationId_Label_03     -- displays instruction 3
+    }
+    for k, stim in ipairs(instructions) do
+        box:send_stimulation(1, stim, t, 0)
+        t = wait_for_continue(box)
+    end
+
+    -- iterate through blocks
+    for k_b, block in ipairs(blocks) do
+
+        t = box:get_current_time()
+
+        -- prepare the trials for this block
+        local trials = {}
+        local shuffled_color_triggers = shuffle_arr(color_trigger_list)
+        for k = 1, num_trials do
+            trials[k] = shuffled_color_triggers[k]
+        end
+        local sounds = {}
+        for k, _ in ipairs(trials) do
+            -- play sounds only in distractor (D) blocks
+            if block == 'D' then
+                --TODO: dont hardcode number of distractor triggers
+                sounds[k] = distractor_triggers[math.random(4)]
+            else
+                sounds[k] = OVTK_StimulationId_Label_D0
             end
-            -- FIXATION POINT
+        end
+
+        -- display instructions and wait until indicated to start the block
+        box:send_stimulation(1, OVTK_StimulationId_Label_04, t, 0)
+        t = wait_for_continue(box)
+        box:send_stimulation(1, OVTK_StimulationId_SegmentStart, t, 0)
+
+        --iterate through trials
+        for k_t, trial in ipairs(trials) do
+            -- assume that at start of loop, `t` is the time of the start of 
+            -- the trial
+
+            -- additional steps are performed for distractor (D) blocks
+
+            -- start the trial
+            if block == 'D' then
+                -- play the sound for this trial
+                box:send_stimulation(1, sounds[k_t], t, 0)
+            end
+
+            -- show the fixation point for collecting baseline
             box:send_stimulation(1, OVTK_GDF_Cross_On_Screen, t, 0)
             t = t + baseline_duration
-            -- show red in red
-            box:send_stimulation(1, Shuffled_color_list[i], t, 0)
-            t = t + target_display
-            if blocks[b] == 'D'
-            then
-                -- stop sound
-                box:send_stimulation(1,OVTK_StimulationId_Label_D0  , t, 0)
+
+            -- show the stimulus
+            box:send_stimulation(1, trial, t, 0)
+            t = t + stimulus_duration
+
+            -- end the trial and wait for a time before starting the next trial
+            if block == 'D' then
+                -- stop playing the sound
+                box:send_stimulation(1, OVTK_StimulationId_Label_D0, t, 0)
             end
-            -- ends trial
-            box:send_stimulation(1,OVTK_StimulationId_VisualStimulationStop  , t, 0)
-            t =  t+ stim_break
+            box:send_stimulation(1, OVTK_StimulationId_VisualStimulationStop, t, 0)
+            t = t + break_duration
+
         end
-        box:send_stimulation(1, OVTK_StimulationId_Label_03, t, 0)  -- end of the block
+
+        -- end the block
+        box:send_stimulation(1, OVTK_StimulationId_SegmentStop, t, 0)
+        box:send_stimulation(1, OVTK_StimulationId_Label_05, t, 0)
         t = t + 3
+        wait_until(box, t)
     end
-    box:send_stimulation(1, OVTK_GDF_End_Of_Session, t, 0)
-    -- used to cause the acquisition scenario to stop
+
+    -- end the experiment
     box:send_stimulation(1, OVTK_StimulationId_ExperimentStop, t, 0)
-    t = t + 3
 end
