@@ -1375,52 +1375,6 @@
 			</Attributes>
 		</Box>
 		<Box>
-			<Identifier>(0x00007065, 0x000012bc)</Identifier>
-			<Name>Stimulation listener</Name>
-			<AlgorithmClassIdentifier>(0x65731e1d, 0x47de5276)</AlgorithmClassIdentifier>
-			<Inputs>
-				<Input>
-					<TypeIdentifier>(0x6f752dd0, 0x082a321e)</TypeIdentifier>
-					<Name>Stimulation stream 1</Name>
-				</Input>
-			</Inputs>
-			<Settings>
-				<Setting>
-					<TypeIdentifier>(0xa88b3667, 0x0871638c)</TypeIdentifier>
-					<Name>Log level to use</Name>
-					<DefaultValue>Information</DefaultValue>
-					<Value>Information</Value>
-					<Modifiability>false</Modifiability>
-				</Setting>
-			</Settings>
-			<Attributes>
-				<Attribute>
-					<Identifier>(0x1fa7a38f, 0x54edbe0b)</Identifier>
-					<Value>272</Value>
-				</Attribute>
-				<Attribute>
-					<Identifier>(0x207c9054, 0x3c841b63)</Identifier>
-					<Value>544</Value>
-				</Attribute>
-				<Attribute>
-					<Identifier>(0x4e7b798a, 0x183beafb)</Identifier>
-					<Value>(0xf451ad91, 0x14c75f86)</Value>
-				</Attribute>
-				<Attribute>
-					<Identifier>(0xce18836a, 0x9c0eb403)</Identifier>
-					<Value>1</Value>
-				</Attribute>
-				<Attribute>
-					<Identifier>(0xcfad85b0, 0x7c6d841c)</Identifier>
-					<Value>1</Value>
-				</Attribute>
-				<Attribute>
-					<Identifier>(0xfba64161, 0x65304e21)</Identifier>
-					<Value></Value>
-				</Attribute>
-			</Attributes>
-		</Box>
-		<Box>
 			<Identifier>(0x000074fb, 0x00005daf)</Identifier>
 			<Name>Acquisition client</Name>
 			<AlgorithmClassIdentifier>(0x35d225cb, 0x3e6e3a5f)</AlgorithmClassIdentifier>
@@ -1573,17 +1527,6 @@
 			<Target>
 				<BoxIdentifier>(0x00006f21, 0x0000169e)</BoxIdentifier>
 				<BoxInputIdentifier>(0x174d1114, 0xfc890658)</BoxInputIdentifier>
-			</Target>
-		</Link>
-		<Link>
-			<Identifier>(0x00001f77, 0x000037f8)</Identifier>
-			<Source>
-				<BoxIdentifier>(0x000074fb, 0x00005daf)</BoxIdentifier>
-				<BoxOutputIndex>2</BoxOutputIndex>
-			</Source>
-			<Target>
-				<BoxIdentifier>(0x00007065, 0x000012bc)</BoxIdentifier>
-				<BoxInputIndex>0</BoxInputIndex>
 			</Target>
 		</Link>
 		<Link>
