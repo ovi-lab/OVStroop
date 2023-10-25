@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "py-analysis"
+version = "0.1.0"
+description = ""
+authors = ["Tiaan Boshoff <tiaanboshoff02@gmail.com>"]
+readme = "README.md"
+packages = [{include = "py_analysis"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+mne = "^1.5.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
