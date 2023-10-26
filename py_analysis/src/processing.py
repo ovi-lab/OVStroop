@@ -50,7 +50,7 @@ def loadData(path: [None | str] = None, **kwargs) -> mne.io.Raw:
     
     
 def prettyPlot(
-        raw, 
+        raw: mne.io.Raw, 
         norm_duration: [float|None] = None,
         norm_start: [float|None] = None,
         **kwargs
@@ -80,4 +80,31 @@ def prettyPlot(
     return raw.plot(**_kwargs)
     
     
-    
+def getOVStimCodes() -> dict[str, int]:
+    ovStimListPath = os.path.join(CONFIG.root, CONFIG.ov_stim_list_path)
+    with open(ovStimListPath, "r") as f:
+        lines = f.readlines()
+        
+    ovStimCodes = {}
+    for line in lines:
+        entries = line.split()
+        ovStimCodes[entries[0]] = int(entries[2], base=16)
+        
+    if not len(ovStimCodes) == len(lines):
+        raise RuntimeError(
+            "The number of stimulation codes read from the stimulations " +
+            "file is not equal to the number of lines in that file."
+        )
+        
+    return ovStimCodes
+
+def ovStimNameEventDict(eventDict: dict[str, int]) -> dict[str, int]:
+    # event_dict maps "OV stim id" -> "MNE event id". To insead use the names
+    # of the OV stims as keys, use the inverse of the bijective mapping
+    # returned by getOvStimCodes(), which maps "OV stim name" -> "OV stim id"
+    ovStimCodes = getOVStimCodes()
+    ovStimCodesRev = {v: k for k, v in ovStimCodes.items()}
+    assert len(ovStimCodes) == len(ovStimCodesRev)
+    _eventDict = {ovStimCodesRev[int(k)]: v for k, v in eventDict.items()}
+
+    return _eventDict
