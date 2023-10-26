@@ -1,2 +1,3 @@
-data_dir: C:\Users\HP User\source\repos\OVStroop\ov_experiment\scenarios\data
+# Specify paths relative to the OVStroop directory
+data_dir: ov_experiment\scenarios\data
 data_format: gdf

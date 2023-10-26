@@ -9,6 +9,19 @@ _log = logging.Logger(__name__)
 class _Config:
     
     def __init__(self):
+        
+        # get the path to OVStroop directory
+        rootName = "OVStroop"
+        root = os.path.abspath(__file__)
+        while os.path.basename(root) != rootName:
+            root = os.path.dirname(root)
+            if not os.path.basename(root):
+                raise Exception(
+                    f"Could not find target root directory `{rootName}` on path "
+                    + os.path.abspath(__file__)
+                    )
+        self.__root = root
+        
         self.__configPaths = []
         
         # Path to default config file
@@ -16,7 +29,8 @@ class _Config:
         self.__configPaths.append(path)
         
         # Path to custom config file
-        # TODO: implement
+        path = os.path.join(self.__root, "py_analysis", "config.yaml")
+        self.__configPaths.append(path)
         
     def __getConfig(self) -> dict[str: Any]:
         config = {}
@@ -38,10 +52,12 @@ class _Config:
             else:
                 _log.debug("Loading config file: %s", configPath)
                 contents = yaml.load(f, Loader=yaml.FullLoader)
+                contents = {} if contents is None else contents
                 config.update(contents)
             finally:
                 f.close()
                 
+        config["root"] = self.__root
         return config
                 
     def __getattr__(self, name):

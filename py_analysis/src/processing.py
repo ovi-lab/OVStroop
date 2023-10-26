@@ -18,12 +18,12 @@ def loadData(path: [None | str] = None) -> mne.io.Raw:
         data_format = os.path.splitext(_path)[1].strip(".")
     elif CONFIG.hasKey("raw_data_path"):
         # if config explicitly specifies a data file
-        _path = CONFIG.data
+        _path = CONFIG.raw_data_path
         data_format = os.path.splitext(_path)[1].strip(".")
     else:
         # Get the latest data recorded in the data dir of the format specified
         # in the config, if it exists
-        data_dir = CONFIG.data_dir
+        data_dir = os.path.join(CONFIG.root, CONFIG.data_dir)
         data_format = CONFIG.data_format
         _log.debug("No data specified, checking data dir: %s", data_dir)
         files = glob.glob(data_dir + "\\**\\*." + data_format, recursive=True)
