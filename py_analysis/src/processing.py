@@ -8,7 +8,7 @@ from src.config import CONFIG
 
 _log = logging.Logger(__name__)
 
-def loadData(path: [None | str] = None) -> mne.io.Raw:
+def loadData(path: [None | str] = None, **kwargs) -> mne.io.Raw:
     _path = path
     supportedFileTypes = {
         "gdf" : {}
@@ -41,10 +41,43 @@ def loadData(path: [None | str] = None) -> mne.io.Raw:
         )
         
     _log.debug("Loading data from file: %s", _path)
-    raw = mne.io.read_raw(_path, **supportedFileTypes[data_format])
+    _kwargs = {}
+    _kwargs.update(supportedFileTypes[data_format])
+    _kwargs.update(kwargs)
+    raw = mne.io.read_raw(_path, **_kwargs)
     
     return raw
     
+    
+def prettyPlot(
+        raw, 
+        norm_duration: [float|None] = None,
+        norm_start: [float|None] = None,
+        **kwargs
+        ):
+    
+    # Define default kwargs and overwrite with any specified kwargs
+    _kwargs = {
+        "start" : 0,
+        "duration" : raw.times[-1],
+        "n_channels" : len(raw.ch_names),
+        "scalings" : 'auto',
+    }
+    _kwargs.update(kwargs)
+    
+    # Overwrite start time and duration if normalised values are specified
+    if norm_start is not None:
+        _kwargs["start"] = norm_start * raw.times[-1]
+    if norm_duration is not None:
+        _kwargs["duration"] = norm_duration * raw.times[-1]
+    
+    # Trim duration to fit inside actual length of signal
+    _kwargs["duration"] = min(
+        _kwargs["duration"],
+        raw.times[-1] - _kwargs["start"]
+    )
+    
+    return raw.plot(**_kwargs)
     
     
     
