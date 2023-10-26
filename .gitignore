@@ -1,3 +1,4 @@
 ov_experiment/scenarios/assets/*
 ov_experiment/.vs
 ov_experiment/scenarios/data/*
+**/__pycache__/

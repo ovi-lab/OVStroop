@@ -9,6 +9,8 @@ packages = [{include = "py_analysis"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 mne = "^1.5.1"
+pyyaml = "^6.0.1"
+jupyter = "^1.0.0"
 
 
 [build-system]
