@@ -1,3 +1,4 @@
+import glob
 import logging
 import os
 from typing import Any
@@ -10,18 +11,23 @@ class _Config:
     
     def __init__(self):
         
-        # get the path to OVStroop directory
-        rootName = "OVStroop"
-        root = os.path.abspath(__file__)
-        while os.path.basename(root) != rootName:
-            root = os.path.dirname(root)
-            if not os.path.basename(root):
+        # Get the path to the project root directory by searching for the
+        # "closest" parent directory that contains a .gitignore file
+        root = os.path.dirname(os.path.abspath(__file__))
+        target = ".gitignore"
+        while len(glob.glob(target, root_dir=root)) == 0:
+            # Check if the system root has been reached
+            if len(os.path.basename(root)) == 0:
                 raise Exception(
-                    f"Could not find target root directory `{rootName}` on path "
+                    "Could not find project root directory on path "
                     + os.path.abspath(__file__)
-                    )
+                )
+            else:
+                root = os.path.dirname(root)
         self.__root = root
         
+        # Specify the paths to config files to check in reverse order of
+        # priority
         self.__configPaths = []
         
         # Path to default config file
