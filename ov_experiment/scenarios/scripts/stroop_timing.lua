@@ -166,22 +166,22 @@ function process(box)
 
         local trial_type_stim = {}
 
-        for k, trial in ipairs(trials) do
+        for ki, triali in ipairs(trials) do
 
-            if ((trial ==  OVTK_StimulationId_Label_11) or (trial ==  OVTK_StimulationId_Label_22)
-            or  (trial ==  OVTK_StimulationId_Label_33) or (trial ==  OVTK_StimulationId_Label_44)) then
+            if ((triali ==  OVTK_StimulationId_Label_11) or (triali ==  OVTK_StimulationId_Label_22)
+            or  (triali ==  OVTK_StimulationId_Label_33) or (triali ==  OVTK_StimulationId_Label_44)) then
                 if block == 'D' then
-                    trial_type_stim[k] =  OVTK_StimulationId_Label_06 -- congruent D trial
+                    trial_type_stim[ki] =  OVTK_StimulationId_Label_07 -- congruent D trial
                 else
-                    trial_type_stim[k] =  OVTK_StimulationId_Label_07 -- congruent ND trial
-                end    
+                    trial_type_stim[ki] =  OVTK_StimulationId_Label_08 -- congruent ND trial
+                end
             else
                 if block == 'D' then
-                    trial_type_stim[k] =  OVTK_StimulationId_Label_08 -- Non congruent D trial
+                    trial_type_stim[ki] =  OVTK_StimulationId_Label_09 -- Non congruent D trial
                 else
-                    trial_type_stim[k] =  OVTK_StimulationId_Label_09 -- Non congruent ND trial
+                    trial_type_stim[ki] =  OVTK_StimulationId_Label_10 -- Non congruent ND trial
                 end
-            end        
+            end
         end
 
 
@@ -196,7 +196,7 @@ function process(box)
             end
         end
 
-        t = box:get_current_time() -- time reset
+        -- t = box:get_current_time() -- time reset
 
         -- display instructions and wait until indicated to start the block
         box:send_stimulation(1, OVTK_StimulationId_Label_04, t, 0)
@@ -224,7 +224,7 @@ function process(box)
             -- show the stimulus
             box:send_stimulation(1, trial, t, 0)
             box:send_stimulation(1, trial_type_stim[k_t], t, 0)
-            
+
             t = t + stimulus_duration
 
             -- end the trial and wait for a time before starting the next trial
