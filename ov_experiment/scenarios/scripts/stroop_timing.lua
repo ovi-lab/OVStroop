@@ -87,7 +87,7 @@ local function wait_for_continue(box)
 
         -- loop through all inputs of the box
         for input = 1, box:get_input_count() do
-            
+
             -- loop through every received stimulation for the input
             for stimulation = 1, box:get_stimulation_count(input) do
 
@@ -103,7 +103,7 @@ local function wait_for_continue(box)
             end
 
         end
-        
+
         -- release cpu
         box:sleep()
     end
@@ -126,11 +126,11 @@ local function shuffle_arr(arr)
     return s
 end
 
-local function wait_until(box, time)  
-    while box:get_current_time() < time do  
-      box:sleep()  
-    end  
-end 
+local function wait_until(box, time)
+    while box:get_current_time() < time do
+      box:sleep()
+    end
+end
 
 -- this function is called once by the box
 function process(box)
@@ -180,10 +180,36 @@ function process(box)
 
         --iterate through trials
         for k_t, trial in ipairs(trials) do
+
+            local trial_type = 'NC'    -- Non Congruent
+            local stroop_condition_stim = nil
+
             -- assume that at start of loop, `t` is the time of the start of 
             -- the trial
 
             -- additional steps are performed for distractor (D) blocks
+
+
+            if ((trial ==  OVTK_StimulationId_Label_11) or (trial ==  OVTK_StimulationId_Label_22)
+                or  (trial ==  OVTK_StimulationId_Label_33) or (trial ==  OVTK_StimulationId_Label_44)) then
+                    trial_type = 'C'  -- congruent
+            end
+
+            if block == 'D' then
+                -- Notify D trial
+                if trial_type == 'C' then
+                    stroop_condition_stim = OVTK_StimulationId_Label_06 -- congruent D trial
+                else
+                    stroop_condition_stim = OVTK_StimulationId_Label_07 -- congruent D trial --Non congruent D trial
+                end
+            else
+                if trial_type == 'C' then
+                    stroop_condition_stim = OVTK_StimulationId_Label_08 -- congruent D trial -- congruent ND trial
+                else
+                    stroop_condition_stim = OVTK_StimulationId_Label_09 -- congruent D trial --Non congruent ND trial
+                end
+            end
+
 
             -- start the trial
             if block == 'D' then
@@ -197,6 +223,8 @@ function process(box)
 
             -- show the stimulus
             box:send_stimulation(1, trial, t, 0)
+            box:send_stimulation(1, stroop_condition_stim, t, 0)
+            
             t = t + stimulus_duration
 
             -- end the trial and wait for a time before starting the next trial
