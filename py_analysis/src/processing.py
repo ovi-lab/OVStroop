@@ -1,6 +1,7 @@
 import glob
 import logging
 import os
+from typing import Callable
 
 import mne
 
@@ -107,4 +108,18 @@ def ovStimNameEventDict(eventDict: dict[str, int]) -> dict[str, int]:
     assert len(ovStimCodes) == len(ovStimCodesRev)
     _eventDict = {ovStimCodesRev[int(k)]: v for k, v in eventDict.items()}
 
+    return _eventDict
+
+def groupEventDict(
+        eventDict: dict[str, int],
+        by: Callable[[str], str|None]
+        ) -> dict[str, int]:
+    
+    # Note: not the most efficient, improve?
+    _eventDict = {}
+    for eventLabel, eventID in eventDict.items():
+        condition = by(eventLabel)
+        prefix = "" if condition is None else condition + "/"
+        _eventDict[prefix + eventLabel] = eventID
+        
     return _eventDict
