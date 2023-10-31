@@ -56,4 +56,22 @@
 	<SettingValue>${Player_ScenarioDirectory}/assets/end.png</SettingValue>
 	<SettingValue>OVTK_StimulationId_Label_06</SettingValue>
 
+	<SettingValue>${Player_ScenarioDirectory}/assets/practice_start_block.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_0A</SettingValue>
+
+	<SettingValue>${Player_ScenarioDirectory}/assets/practice_red.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_15</SettingValue>
+	
+	<SettingValue>${Player_ScenarioDirectory}/assets/practice_green.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_25</SettingValue>
+
+	<SettingValue>${Player_ScenarioDirectory}/assets/practice_blue.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_35</SettingValue>
+
+	<SettingValue>${Player_ScenarioDirectory}/assets/practice_yellow.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_45</SettingValue>
+
+	<SettingValue>${Player_ScenarioDirectory}/assets/practice_end_block.png</SettingValue>
+	<SettingValue>OVTK_StimulationId_Label_0B</SettingValue>
+
 </OpenViBE-SettingsOverride>
