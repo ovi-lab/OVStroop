@@ -48,6 +48,14 @@ def makeInstructions() -> None:
                 {
                     'msg' : "Start of the experiment",
                     'color' : "white"
+                },
+                {
+                    'msg' : "\n",
+                    'color' : "white"
+                },
+                {
+                    'msg' : "Press SPACE to continue",
+                    'color' : "grey"
                 }
             ]
         },
@@ -59,12 +67,12 @@ def makeInstructions() -> None:
                     'color' : "white"
                 },
                 {
-                    'msg' : "",
+                    'msg' : "\n",
                     'color' : "white"
                 },
                 {
                     'msg' : "Press SPACE to continue",
-                    'color' : "white"
+                    'color' : "grey"
                 }
             ]
         },
@@ -91,6 +99,14 @@ def makeInstructions() -> None:
                 {
                     'msg' : "GREEN",
                     'color' : "red"
+                },
+                {
+                    'msg' : "\n",
+                    'color' : "white"
+                },
+                {
+                    'msg' : "Press SPACE to continue",
+                    'color' : "grey"
                 }
             ]
         },
@@ -112,6 +128,14 @@ def makeInstructions() -> None:
                 {
                     'msg' : "Press the Yellow sticker for Yellow",
                     'color' : "yellow"
+                },
+                {
+                    'msg' : "\n",
+                    'color' : "white"
+                },
+                {
+                    'msg' : "Press SPACE to continue",
+                    'color' : "grey"
                 }
             ]
         },
@@ -148,6 +172,14 @@ def makeInstructions() -> None:
                 {
                     'msg' : "Please ask any questions if you have any.",
                     'color' : "white"
+                },
+                {
+                    'msg' : "\n",
+                    'color' : "white"
+                },
+                {
+                    'msg' : "Press SPACE to continue",
+                    'color' : "grey"
                 }
             ]
         },
@@ -168,7 +200,69 @@ def makeInstructions() -> None:
                     'color' : "white"
                 },
             ]
-        }
+        },
+        {
+            'title' : "practice_red",
+            'content' : [
+                {
+                    'msg' : "XXXX",
+                    'color' : "red"
+                },
+            ]
+        },
+        {
+            'title' : "practice_green",
+            'content' : [
+                {
+                    'msg' : "XXXX",
+                    'color' : "green"
+                },
+            ]
+        },
+        {
+            'title' : "practice_blue",
+            'content' : [
+                {
+                    'msg' : "XXXX",
+                    'color' : "blue"
+                },
+            ]
+        },
+        {
+            'title' : "practice_yellow",
+            'content' : [
+                {
+                    'msg' : "XXXX",
+                    'color' : "yellow"
+                },
+            ]
+        },
+        {
+            'title' : "practice_start_block",
+            'content' : [
+                {
+                    'msg' : "Start of the Practice Block",
+                    'color' : "white"
+                },
+                {
+                    'msg' : "\n",
+                    'color' : "white"
+                },
+                {
+                    'msg' : "Press SPACE to continue",
+                    'color' : "grey"
+                }
+            ]
+        },
+        {
+            'title' : "practice_end_block",
+            'content' : [
+                {
+                    'msg' : "End of the Practice Block",
+                    'color' : "white"
+                },
+            ]
+        },
     ]
     
     for page in pages:

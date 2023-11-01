@@ -2,6 +2,8 @@ function initialize(box)
     dofile(box:get_config("${Path_Data}") .. "/plugins/stimulation/lua-stimulator-stim-codes.lua")
 
     num_trials = box:get_setting(2)
+    practice_trials = box:get_setting(3)
+    num_practice_trials = 20
     stimulus_duration = 2 --sec
     baseline_duration = 1.5 --sec
     break_duration = 1 --sec
@@ -55,6 +57,13 @@ function initialize(box)
         OVTK_StimulationId_Label_44, -- yellow in yellow
         OVTK_StimulationId_Label_44, -- yellow in yellow
         OVTK_StimulationId_Label_44, -- yellow in yellow
+    }
+
+    practice_trrigger_list = {
+        OVTK_StimulationId_Label_15, --red XXXX
+        OVTK_StimulationId_Label_25, --green XXXX
+        OVTK_StimulationId_Label_35, --blue XXXX
+        OVTK_StimulationId_Label_45  --yellow XXXX
     }
 
     math.randomseed(os.time())
@@ -151,6 +160,39 @@ function process(box)
         t = wait_for_continue(box)
     end
 
+    if (practice_trials == "true") then
+        local practice_stims = {}
+        -- start of the practice trial block 
+        box:send_stimulation(1, OVTK_StimulationId_Label_0A, t, 0)
+        t = wait_for_continue(box)
+
+
+        for i=1,num_practice_trials do
+            practice_stims[i] =  practice_trrigger_list[math.random(4)]
+        end
+
+        for k_t, practice_trial in ipairs(practice_stims) do
+            -- start the trial
+            -- show the fixation point for collecting baseline
+            box:send_stimulation(1, OVTK_GDF_Cross_On_Screen, t, 0)
+            t = t + baseline_duration
+
+            -- show the stimulus
+            box:send_stimulation(1, practice_trial, t, 0)
+            t = t + stimulus_duration
+
+            -- end the trial and wait for a time before starting the next trial
+            box:send_stimulation(1, OVTK_StimulationId_VisualStimulationStop, t, 0)
+            t = t + break_duration
+
+        end
+        
+        -- end the practice block
+        box:send_stimulation(1, OVTK_StimulationId_Label_0B, t, 0)
+        t = t + 3
+        wait_until(box, t)
+    end
+
     -- iterate through blocks
     for k_b, block in ipairs(blocks) do
 
@@ -216,6 +258,8 @@ function process(box)
         wait_until(box, t)
     end
 
+    -- show the experiment end screen
+    box:send_stimulation(1, OVTK_StimulationId_Label_06, t, 0)
     -- end the experiment
     box:send_stimulation(1, OVTK_StimulationId_ExperimentStop, t, 0)
 end
