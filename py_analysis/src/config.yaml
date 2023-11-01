@@ -1,5 +1,17 @@
+# Default config values
 # Specify paths relative to the OVStroop directory
+
 data_dir: ov_experiment\scenarios\data
 data_format: gdf
 
-ov_stim_list_path: py_analysis\src\tools\stimulation_list.txt 
+ov_stim_list_path: py_analysis\src\tools\stimulation_list.txt
+
+# These must manually be updated here if the values in stroop_timing.lua are
+# changed
+stimulus_duration: 2
+baseline_duration: 1.5
+break_duration: 1
+
+epoching:
+  tmin: -0.2
+  tmax: 0.5
