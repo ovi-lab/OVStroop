@@ -1,6 +1,7 @@
 import glob
 import logging
 import os
+import re
 from typing import Callable
 
 import mne
@@ -49,7 +50,6 @@ def loadData(path: [None | str] = None, **kwargs) -> mne.io.Raw:
     
     return raw
     
-    
 def prettyPlot(
         raw: mne.io.Raw, 
         norm_duration: [float|None] = None,
@@ -60,8 +60,7 @@ def prettyPlot(
     # Define default kwargs and overwrite with any specified kwargs
     _kwargs = {
         "start" : 0,
-        "duration" : raw.times[-1],
-        "n_channels" : len(raw.ch_names),
+        "n_channels" : min(len(raw.ch_names), 20),
         "scalings" : 'auto',
     }
     _kwargs.update(kwargs)
@@ -79,7 +78,6 @@ def prettyPlot(
     )
     
     return raw.plot(**_kwargs)
-    
     
 def getOVStimCodes() -> dict[str, int]:
     ovStimListPath = os.path.join(CONFIG.root, CONFIG.ov_stim_list_path)
@@ -99,6 +97,9 @@ def getOVStimCodes() -> dict[str, int]:
         
     return ovStimCodes
 
+def getChannelNames() -> list[str]:
+    pass
+
 def ovStimNameEventDict(eventDict: dict[str, int]) -> dict[str, int]:
     # event_dict maps "OV stim id" -> "MNE event id". To insead use the names
     # of the OV stims as keys, use the inverse of the bijective mapping
@@ -112,14 +113,99 @@ def ovStimNameEventDict(eventDict: dict[str, int]) -> dict[str, int]:
 
 def groupEventDict(
         eventDict: dict[str, int],
-        by: Callable[[str], str|None]
+        by: list[Callable[[str], str|None]]|None = None
         ) -> dict[str, int]:
     
+    
+    if by is not None:
+        _by = by
+    else:
+        # Default eventDict
+        # Assume that all keys in eventDict are OV stimulations
+        
+        def groupVisStimOnset(s: str) -> str|None:
+            if re.search(r"(?<=OVTK_StimulationId_Label_)([1-9]){2}", s):
+                return "visual_stimulus_onset"
+            else:
+                return None
+    
+        def groupVisStimEnd(s: str) -> str|None:
+            if re.search(r"(OVTK_StimulationId_VisualStimulationStop)", s):
+                return "visual_stimulus_end"
+            else:
+                return None
+    
+        def groupAudStimOnset(s: str) -> str|None:
+            if re.search(r"(OVTK_StimulationId_Label_D)[1-4]{1}", s):
+                return "auditory_stimulus_onset"
+            else:
+                return None
+    
+        def groupAudStimEnd(s: str) -> str|None:
+            if re.search(r"(OVTK_StimulationId_Label_D0)", s):
+                return "auditory_stimulus_end"
+            else:
+                return None
+    
+        def groupCongruentOrNoncongruent(s: str) -> str|None:
+            match = re.search(r"(?<=OVTK_StimulationId_Label_)([1-9]){2}", s)
+    
+            if match is None:
+                return None
+    
+            num = match.group()
+            if num[0] == '0':
+                return None
+            elif num[0] == num[1]:
+                return "congruent"
+            else:
+                return "noncongruent"
+    
+        def groupBlock(s: str) -> str|None:
+            match = re.search(r"(?<=OVTK_StimulationId_Segment)(Start|Stop)", s)
+    
+            if match is None:
+                return None
+            else:
+                return "block_" + match.group(1).lower()
+    
+        def groupInstruction(s: str) -> str|None:
+            if re.search(R"(OVTK_StimulationId_Label_0)[1-5]{1}", s):
+                return "instruction"
+            else:
+                return None
+    
+        def groupResponse(s: str) -> str|None:
+            if re.search(r"(OVTK_StimulationId_Button)\d{1}(_Pressed)", s):
+                return "response"
+            else:
+                return None
+    
+        def groupBaseline(s: str) -> str|None:
+            if re.search(r"OVTK_GDF_Cross_On_Screen", s):
+                return "baseline_start"
+            else:
+                return None
+    
+        _by = [
+            groupCongruentOrNoncongruent, 
+            groupVisStimOnset,
+            groupVisStimEnd,
+            groupAudStimOnset,
+            groupAudStimEnd,
+            groupBlock,
+            groupInstruction,
+            groupResponse
+        ]
+        
     # Note: not the most efficient, improve?
     _eventDict = {}
     for eventLabel, eventID in eventDict.items():
-        condition = by(eventLabel)
-        prefix = "" if condition is None else condition + "/"
-        _eventDict[prefix + eventLabel] = eventID
+        _eventLabel = eventLabel # Since eventLabel should be a string this should be safe to copy
+        for f in _by:
+            condition = f(_eventLabel)
+            if condition is not None:
+                _eventLabel = condition + "/" + _eventLabel
+        _eventDict[_eventLabel] = eventID
         
     return _eventDict
