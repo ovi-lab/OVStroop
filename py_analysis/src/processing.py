@@ -60,6 +60,7 @@ def prettyPlot(
     # Define default kwargs and overwrite with any specified kwargs
     _kwargs = {
         "start" : 0,
+        "duration" : 20,
         "n_channels" : min(len(raw.ch_names), 20),
         "scalings" : 'auto',
     }
