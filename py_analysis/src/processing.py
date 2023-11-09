@@ -4,6 +4,7 @@ import os
 import re
 from typing import Callable
 
+import matplotlib as mpl
 import mne
 
 from src.config import CONFIG
@@ -55,7 +56,7 @@ def prettyPlot(
         norm_duration: [float|None] = None,
         norm_start: [float|None] = None,
         **kwargs
-        ):
+        ) -> mpl.figure.Figure:
     
     # Define default kwargs and overwrite with any specified kwargs
     _kwargs = {
@@ -79,6 +80,60 @@ def prettyPlot(
     )
     
     return raw.plot(**_kwargs)
+
+def prettyPlotEvoked(
+        evoked: mne.Evoked, 
+        cleanPlot: bool = True,
+        ax: mpl.axes.Axes = None,
+        colors: dict[str, Any]|str|None = None,
+        units: str = "uV",
+        title: str|None = None,
+        **kwargs
+        ) -> (mpl.axes.Axes, dict[str, mpl.lines.Line2D]):
+    _fig, _ax = ax.get_figure(), ax if ax is not None else plt.subplots()
+    
+    chNames = evoked.ch_names
+    if len(set(chNames)) != len(chNames):
+        raise ValueError("Channel names must be unique")
+    
+    # Get color for each channel
+    if isinstance(colors, dict):
+        _colors = colors
+    elif colors is None or isinstance(colors, str):
+        cmName = colors if isinstance(colors, str) else "viridis" # by default
+        cm = mpl.colormaps[cmName].resampled(len(chNames))
+        _colors = {k : v for (k, v) in zip(chNames, cm.colors)}
+    else:
+        raise ValueError(
+            f"Invalid type for argument `colors`: {type(colors)}"
+        )
+    
+    # Do not pass color as additional kwarg, it is handled seperately
+    kwargs.pop("color", None)
+    
+    # Plot the data
+    lines = {}  
+    data = evoked.get_data(units=units)
+    for k, chName in enumerate(chNames):
+        lines[chName] = _ax.plot(
+            evoked.times,
+            data[k],
+            label=chName,
+            color=_colors[chName],
+            **kwargs
+        )
+        
+    # Clean up the plot
+    if cleanPlot:
+        _ax.set_xlabel("Time (s)")
+        _ax.set_ylabel(units)
+        _ax.set_title(
+            "$N_{ave}=" + str(evoked.nave) + "$", 
+            loc="right", 
+        )
+        _ax.set_title(title)
+        
+    return _ax, lines
     
 def getOVStimCodes() -> dict[str, int]:
     ovStimListPath = os.path.join(CONFIG.root, CONFIG.ov_stim_list_path)
