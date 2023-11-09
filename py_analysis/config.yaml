@@ -1,5 +1,49 @@
-epoching:
-  tmin: -1
-  tmax: 2.5
+# Config Values 
+#
+# Specify paths relative to the root directory (directory
+# containing the gitignore file)
+###############################################################################
 
-session_name: p-1_b-1_2023-10-24_15-19-46
+# General
+
+data_dir: ov_experiment\scenarios\data
+data_format: gdf
+
+ov_stim_list_path: py_analysis\src\tools\stimulation_list.txt
+
+# Openvibe Scenario
+
+# These values are only for reference by analysis code - the actual openvibe
+# scenario does not read from or update them. They must manually be updated
+# here if the corresponding values in the openvibe experiment are changed.
+stimulus_duration: 2
+baseline_duration: 1.5
+break_duration: 1
+
+# Analysis Parameters
+
+raw_data_path: 
+session_name: p-2_b-1_2023-10-30_16-21-21
+display_name: Participant 2
+data_format: gdf
+
+target_channels: # must be list or None
+  - 2Z
+  - 2L
+  - 2R
+  - 1LA
+  - 4Z
+  - 1RA
+  - 3LB
+  - 3RB
+non_data_channels: # must be a list or None
+  - Tgt
+  - SC
+
+notch_freqs: 60
+l_freq: 2
+h_freq: 20
+
+metadata_timeIntervalPadding: 0.05
+epoch_tmin: -0.5
+epoch_tmax: 1

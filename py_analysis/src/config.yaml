@@ -24,8 +24,16 @@ break_duration: 1
 
 raw_data_path: 
 session_name: 
+display_name: 
 data_format: gdf
 
-epoching:
-  tmin: -0.5
-  tmax: 1
+target_channels: # must be list or None
+non_data_channels: # must be a list or None
+
+notch_freqs:
+l_freq:
+h_freq:
+
+metadata_timeIntervalPadding: 0.05
+epoch_tmin: -0.5
+epoch_tmax: 1

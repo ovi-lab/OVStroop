@@ -3,7 +3,7 @@ import glob
 import logging
 import os
 import re
-from typing import Callable
+from typing import Any, Callable
 
 import matplotlib as mpl
 import mne
@@ -97,7 +97,7 @@ def loadData(
         
     _log.debug("Loading data from file: %s", dataPath)
     _kwargs = {}
-    _kwargs.update(supportedFileTypes[data_format])
+    _kwargs.update(supportedFileTypes[dataFormat])
     _kwargs.update(kwargs)
     raw = mne.io.read_raw(dataPath, **_kwargs)
     
