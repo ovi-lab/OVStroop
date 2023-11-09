@@ -69,8 +69,15 @@ class _Config:
     def __getattr__(self, name):
         return self.__getConfig()[name]
     
+    def __str__(self):
+        c = self.__getConfig()
+        return str(c)
+    
     def hasKey(self, key):
         return key in self.__getConfig()
+    
+    def snapshot(self) -> dict[str, Any]:
+        return self.__getConfig()
 
 
 CONFIG = _Config()

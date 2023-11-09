@@ -1,17 +1,31 @@
-# Default config values
-# Specify paths relative to the OVStroop directory
+# Default Config Values 
+#
+# Specify paths relative to the root directory (directory
+# containing the gitignore file)
+###############################################################################
+
+# General
 
 data_dir: ov_experiment\scenarios\data
 data_format: gdf
 
 ov_stim_list_path: py_analysis\src\tools\stimulation_list.txt
 
-# These must manually be updated here if the values in stroop_timing.lua are
-# changed
+# Openvibe Scenario
+
+# These values are only for reference by analysis code - the actual openvibe
+# scenario does not read from or update them. They must manually be updated
+# here if the corresponding values in the openvibe experiment are changed.
 stimulus_duration: 2
 baseline_duration: 1.5
 break_duration: 1
 
+# Analysis Parameters
+
+raw_data_path: 
+session_name: 
+data_format: gdf
+
 epoching:
-  tmin: -0.2
-  tmax: 1.5
+  tmin: -0.5
+  tmax: 1
