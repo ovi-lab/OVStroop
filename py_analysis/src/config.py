@@ -7,6 +7,8 @@ import yaml
 
 _log = logging.Logger(__name__)
 
+# TODO: clean up, change to inherit from base config and to use gradcpt implementation
+
 class _Config:
     
     def __init__(self):
@@ -67,7 +69,12 @@ class _Config:
         return config
                 
     def __getattr__(self, name):
-        return self.__getConfig()[name]
+        try:
+            val = self.__getConfig()[name]
+        except KeyError as E:
+            raise AttributeError(name) from E
+        else:
+            return val if not isinstance(val, dict) else _ConfigMapping(val)
     
     def __str__(self):
         c = self.__getConfig()
@@ -79,5 +86,25 @@ class _Config:
     def snapshot(self) -> dict[str, Any]:
         return self.__getConfig()
 
+class _ConfigMapping:
+    def __init__(self, d: dict[str, Any]) -> None:
+        self._contents = d
+        
+    def __getattr__(self, name):
+        try:
+            val = self._contents[name]
+        except KeyError as E:
+            raise AttributeError(name) from E
+        else:
+            return val if not isinstance(val, dict) else _ConfigMapping(val)
+        
+    def __str__(self):
+        c = self._contents
+        return str(c)
+    
+    def hasKey(self, key):
+        return key in self._contents
+        
+    
 
 CONFIG = _Config()
