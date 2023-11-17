@@ -13,6 +13,7 @@ pyyaml = "^6.0.1"
 jupyter = "^1.0.0"
 pandas = "^2.1.1"
 pyqt6 = "^6.6.0"
+statsmodels = "^0.14.0"
 
 
 [build-system]

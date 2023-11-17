@@ -6,10 +6,10 @@
 
 # General
 
-data_dir: ov_experiment\scenarios\data
+data_dir: ov_experiment/scenarios/data
 data_format: gdf
 
-ov_stim_list_path: py_analysis\src\tools\stimulation_list.txt
+ov_stim_list_path: py_analysis/src/tools/stimulation_list.txt
 
 # Openvibe Scenario
 
