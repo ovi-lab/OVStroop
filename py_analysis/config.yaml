@@ -6,10 +6,10 @@
 
 # General
 
-data_dir: ov_experiment/scenarios/data
+data_dir: ov_experiment\scenarios\data
 data_format: gdf
 
-ov_stim_list_path: py_analysis/src/tools/stimulation_list.txt
+ov_stim_list_path: py_analysis\src\tools\stimulation_list.txt
 
 # Openvibe Scenario
 
@@ -23,8 +23,8 @@ break_duration: 1
 # Analysis Parameters
 
 raw_data_path: 
-session_name: p-2_b-1_2023-10-30_16-21-21
-display_name: Participant 2
+session_name: p-4_b-1_2023-11-10_16-08-25
+display_name: Participant 4
 data_format: gdf
 
 target_channels: # must be list or None
